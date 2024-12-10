@@ -7,10 +7,12 @@ import tushare as ts
 ts.set_token('3d35a3730c43014dec0df58ec056ce7cbd9e5a54a1727e0f15649592')
 pro = ts.pro_api()
 
+# 確定上證50成分股
 Chgsmp = pd.read_csv("/Users/lyndonbin/Downloads/VS_Code/data/Machine-Learning/IDX_Chgsmp.csv")
 Chgsmp['Chgsmp02'] = Chgsmp['Chgsmp02'].apply(lambda x: str(x) + '.SH')
 Code_50 = Chgsmp['Chgsmp02'].drop_duplicates().tolist()
 
+# 下載數據
 def download_data():
     total_codes = len(Code_50)
 
@@ -27,6 +29,7 @@ def download_data():
         
         time.sleep(60)
 
+# 整合數據
 def SSE_50_data():
     sse_data = glob.glob('/Users/lyndonbin/Downloads/VS_Code/data/Machine-Learning/*.SH_data.csv')
 
